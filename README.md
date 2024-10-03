@@ -57,14 +57,14 @@
     "precio": 1000000.0
 }
 </code></pre>
-
+<br>
 <h3>Agregar Imagen -> /producto/addImg/{id}</h3>
 <pre><code class="json">
 {
     "url": "http/url/img"
 }
 </code></pre>
-
+<br>
 <h3>Editar producto -> /producto/update/{id}</h3>
 <pre><code class="json">
 {
@@ -79,7 +79,7 @@
     "precio": 1000000.0
 }
 </code></pre>
-
+<br>
 <h3>Agregar usuario -> /user/add</h3>
 <pre><code class="json">
 {
@@ -90,7 +90,7 @@
     "roles": ["ADMIN"]
 }
 </code></pre>
-
+<br>
 <h3>Edita usuario -> /user/update/{id}</h3>
 <pre><code class="json">
 {
@@ -99,7 +99,7 @@
     "roles": ["ADMIN"]
 }
 </code></pre>
-
+<br>
 <h3>Log in -> /login</h3>
 <pre><code class="json">
 {
