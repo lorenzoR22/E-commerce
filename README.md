@@ -41,8 +41,6 @@
 | POST     | /login                                | log in                               | [JSON](#log-in)       |
 
     
-<h2>Sample Valid JSON Request Bodys</h2>
-
 <h2>Sample Valid JSON Request Bodies</h2>
 
 <h3>Agregar producto -> /producto/add</h3>
