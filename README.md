@@ -40,6 +40,11 @@
 |:---------|:--------------------------------------|:-------------------------------------|:--------------------------------|
 | POST     | /login                                | log in                               | [JSON](#log-in)       |
 
+    
+<h2>Sample Valid JSON Request Bodys</h2>
+
+<h2>Sample Valid JSON Request Bodies</h2>
+
 <h3>Agregar producto -> /producto/add</h3>
 <pre><code class="json">
 {
@@ -54,11 +59,16 @@
     "precio": 1000000.0
 }
 </code></pre>
-    
-<h2>Sample Valid JSON Request Bodys</h2>
 
-<h3 id="agregar-producto">Agregar producto -> /producto/add</h3>
-```json
+<h3>Agregar Imagen -> /producto/addImg/{id}</h3>
+<pre><code class="json">
+{
+    "url": "http/url/img"
+}
+</code></pre>
+
+<h3>Editar producto -> /producto/update/{id}</h3>
+<pre><code class="json">
 {
     "nombre": "iphone x",
     "descripcion": "descripcion",
@@ -69,5 +79,33 @@
     ],
     "stock": 10,
     "precio": 1000000.0
-}```
- <h3 id="agregar-imagen">Agregar Imagen -> /producto/addImg/{id}</h3> ```json { "url": "http/url/img" } ``` <h3 id="editar-producto">Editar producto -> /producto/update/{id}</h3> ```json { "nombre": "iphone x", "descripcion": "descripcion", "categoria": "celular", "imagenes": [ "urlfoto 1", "urlfoto 2" ], "stock": 10, "precio": 1000000.0 } ``` <h3 id="agregar-usuario">Agregar usuario -> /user/add</h3> ```json { "username": "user", "password": "password", "email": "user@gmail.com", "telefono": "123456789", "roles": ["ADMIN"] } ``` <h3 id="editar-usuario">Edita usuario -> /user/update/{id}</h3> ```json { "email": "user@gmail.com", "telefono": "123456789", "roles": ["ADMIN"] } ``` <h3 id="log-in">Log in -> /login</h3> ```json { "username": "username", "password": "password" } ```
+}
+</code></pre>
+
+<h3>Agregar usuario -> /user/add</h3>
+<pre><code class="json">
+{
+    "username": "user",
+    "password": "password",
+    "email": "user@gmail.com",
+    "telefono": "123456789",
+    "roles": ["ADMIN"]
+}
+</code></pre>
+
+<h3>Edita usuario -> /user/update/{id}</h3>
+<pre><code class="json">
+{
+    "email": "user@gmail.com",
+    "telefono": "123456789",
+    "roles": ["ADMIN"]
+}
+</code></pre>
+
+<h3>Log in -> /login</h3>
+<pre><code class="json">
+{
+    "username": "username",
+    "password": "password"
+}
+</code></pre>
