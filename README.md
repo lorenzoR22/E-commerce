@@ -3,6 +3,8 @@
 
 <h2>Carrito</h2>
 
+<h1>Rutas</h1>
+
 | Method   | Url                                   | Descripcion                          | Sample Valid Request Body       |
 |:---------|:--------------------------------------|:-------------------------------------|:--------------------------------|
 | GET      | /carrito/getAll                      | obtiene todos los carritos          |                                 |
