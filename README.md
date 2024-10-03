@@ -12,7 +12,8 @@
 | GET | /carrito/facturas | muestra todas las facturas |  |
 | DELETE | /carrito/deleteProducto/{id} | borra un producto por id del carrito |  |
 
-# Producto
+<h2>Producto</h2>
+
 | Method   | Url        | Descripcion | Sample Valid Request Body|
 |:---------|:-----------|:-----------|:---------|
 | GET | /producto/getAll | obtiene todos los producto |  |
@@ -23,7 +24,8 @@
 | DELETE | /producto/delete/{id} | borra un producto por id |  |
 | DELETE | /producto/deleteImg/{id} | borra una imagen del producto por id |  |
 
-# User
+<h2>User</h2>
+
 | Method   | Url        | Descripcion | Sample Valid Request Body|
 |:---------|:-----------|:-----------|:---------|
 | GET | /user/getAll | obtiene todos los usuarios |  |
@@ -32,7 +34,8 @@
 | PUT | /user/update/{id} | edita un usuario por id | JSON |
 | DELETE | /user/delete/{id} | borra un usuario por id |  |
 
-# Auth
+<h2>Auth</h2>
+
 | Method   | Url        | Descripcion | Sample Valid Request Body|
 |:---------|:-----------|:-----------|:---------|
 | POST | /login | log in | JSON |
