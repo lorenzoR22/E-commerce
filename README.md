@@ -2,8 +2,8 @@
 <p></p>
 # Ejemplo de Tabla con Alineación
 
-| Nombre       | Autor          | Precio |
-|:-------------|:---------------|-------:|
+| Metohd   | Url        | Descrpcion | 
+|:---------|:-----------|:-----------|
 | El Quijote   | Miguel de Cervantes | $10.00 |
 | Cien años de soledad | Gabriel García Márquez | $12.50 |
 | Orgullo y prejuicio | Jane Austen | $8.99 |
