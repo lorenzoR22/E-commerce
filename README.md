@@ -40,6 +40,7 @@
 |:---------|:--------------------------------------|:-------------------------------------|:--------------------------------|
 | POST     | /login                                | log in                               | [JSON](#log-in)       |
 
+</h3> ```json { "url": "http/url/img" } ``` <h3>
 <h2>Sample Valid JSON Request Bodys</h2>
 
 <h3 id="agregar-producto">Agregar producto -> /producto/add</h3>
