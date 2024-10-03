@@ -1,8 +1,7 @@
 <h1>Spring Boot, MySQL, Spring Security, JWT, JPA, Rest API</h1>
 <p></p>
 
-# Carrito
-
+<p>Carrito</p>
 | Method   | Url        | Descripcion | Sample Valid Request Body|
 |:---------|:-----------|:-----------|:---------|
 | GET | /carrito/getAll | obtiene todos los carritos |  |
