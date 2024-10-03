@@ -18,9 +18,9 @@
 |:---------|:--------------------------------------|:-------------------------------------|:--------------------------------|
 | GET      | /producto/getAll                      | obtiene todos los productos         |                                 |
 | GET      | /producto/get/{id}                   | obtiene un producto                 |                                 |
-| POST     | /producto/add                         | agrega un producto                  | JSON                           |
-| POST     | /producto/addImg/{id}                | agrega una imagen a un producto por id | JSON                         |
-| PUT      | /producto/update/{id}                 | edita un producto                   | JSON                           |
+| POST     | /producto/add                         | agrega un producto                  | [JSON](#agregar-producto)                           |
+| POST     | /producto/addImg/{id}                | agrega una imagen a un producto por id | [JSON](#agregar-imagen)                         |
+| PUT      | /producto/update/{id}                 | edita un producto                   | [JSON](#editar-producto)                           |
 | DELETE   | /producto/delete/{id}                 | borra un producto por id            |                                 |
 | DELETE   | /producto/deleteImg/{id}              | borra una imagen del producto por id|                                 |
 
@@ -30,67 +30,27 @@
 |:---------|:--------------------------------------|:-------------------------------------|:--------------------------------|
 | GET      | /user/getAll                         | obtiene todos los usuarios          |                                 |
 | GET      | /user/get/{id}                       | obtiene usuario por id              |                                 |
-| POST     | /user/add                            | agrega un usuario                    | JSON       |
-| PUT      | /user/update/{id}                    | edita un usuario por id             | JSON        |
+| POST     | /user/add                            | agrega un usuario                    | [JSON](#agregar-usuario)       |
+| PUT      | /user/update/{id}                    | edita un usuario por id             | [JSON](#editar-usuario)        |
 | DELETE   | /user/delete/{id}                    | borra un usuario por id              |                                 |
 
 <h2>Autenticación</h2>
 
 | Method   | Url                                   | Descripcion                          | Sample Valid Request Body       |
 |:---------|:--------------------------------------|:-------------------------------------|:--------------------------------|
-| POST     | /login                                | log in                               | JSON      |
+| POST     | /login                                | log in                               | [JSON](#log-in)       |
 
 <h2>Sample Valid JSON Request Bodys</h2>
 
-Agregar producto->/producto/add
-{
-    "nombre": "iphone x",
-    "descripcion": "descripcion",
-    "categoria": "celular",
-    "imagenes": [
-        "urlfoto 1",
-        "urlfoto 2"
-    ],
-    "stock": 10,
-    "precio": 1000000.0
-}
-
-Agregar Imagen->/producto/addImg/{id} 
-{
-    "url":"http/url/img"
-}
-
-Editar producto->/producto/update/{id}
-{
-    "nombre": "iphone x",
-    "descripcion": "descripcion",
-    "categoria": "celular",
-    "imagenes": [
-        "urlfoto 1",
-        "urlfoto 2"
-    ],
-    "stock": 10,
-    "precio": 1000000.0
-}
-
-Agregar usuario->/user/add
-{
-    "username":"user",
-    "password":"password",
-    "email":"user@gmail.com",
-    "telefono":"123456789",
-    "roles":["ADMIN"]
-}
-
-Edita usuario->/user/update/{id}
-{
-    "email":"user@gmail.com",
-    "telefono":"123456789",
-    "roles":["ADMIN"]
-}
-
-log in->/login 
-{
-    "username":"username",
-    "password":"password"
-}
+estructuralo bien a esto <h3 id="agregar-producto">Agregar producto -> /producto/add</h3> 
+json { "nombre": "iphone x", "descripcion": "descripcion", "categoria": "celular", "imagenes": [ "urlfoto 1", "urlfoto 2" ], "stock": 10, "precio": 1000000.0 }
+ <h3 id="agregar-imagen">Agregar Imagen -> /producto/addImg/{id}</h3> 
+json { "url": "http/url/img" }
+ <h3 id="editar-producto">Editar producto -> /producto/update/{id}</h3> 
+json { "nombre": "iphone x", "descripcion": "descripcion", "categoria": "celular", "imagenes": [ "urlfoto 1", "urlfoto 2" ], "stock": 10, "precio": 1000000.0 }
+ <h3 id="agregar-usuario">Agregar usuario -> /user/add</h3> 
+json { "username": "user", "password": "password", "email": "user@gmail.com", "telefono": "123456789", "roles": ["ADMIN"] }
+ <h3 id="editar-usuario">Edita usuario -> /user/update/{id}</h3> 
+json { "email": "user@gmail.com", "telefono": "123456789", "roles": ["ADMIN"] }
+ <h3 id="log-in">Log in -> /login</h3> 
+json { "username": "username", "password": "password" }
