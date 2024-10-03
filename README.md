@@ -1,5 +1,9 @@
-<h1>Spring Boot, MySQL, Spring Security, JWT, JPA, Rest API</h1>
-<p>Esta aplicación es un sistema de gestió de carritos de compra que permite a los usuarios gestionar productos, realizar compras y administrar sus cuentas.</p>
+# Sistema de Gestión de Carritos de Compra
+
+**Tecnologías:** Spring Boot, MySQL, Spring Security, JWT, JPA
+
+Esta aplicación es un sistema de gestión de carritos de compra que permite a los usuarios gestionar productos, realizar compras y administrar sus cuentas.
+
 
 <h1>Endpoints de la API</h1>
 <h2>Carrito</h2>
