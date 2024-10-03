@@ -25,6 +25,7 @@
 
 # User
 | Method   | Url        | Descripcion | Sample Valid Request Body|
+|:---------|:-----------|:-----------|:---------|
 | GET | /user/getAll | obtiene todos los usuarios |  |
 | GET | /user/get/{id} | obtiene usuario por id |  |
 | POST | /user/add | agrega un usuario | JSON  |
@@ -33,4 +34,5 @@
 
 # Auth
 | Method   | Url        | Descripcion | Sample Valid Request Body|
+|:---------|:-----------|:-----------|:---------|
 | POST | /login | log in | JSON |
