@@ -1,7 +1,7 @@
 <h1>Spring Boot, MySQL, Spring Security, JWT, JPA, Rest API</h1>
 <p></p>
 
-<h3>Carrito</h3>
+<h2>Carrito</h2>
 
 | Method   | Url        | Descripcion | Sample Valid Request Body|
 |:---------|:-----------|:-----------|:---------|
