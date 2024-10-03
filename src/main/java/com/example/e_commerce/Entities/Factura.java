@@ -24,7 +24,6 @@ public class Factura {
     private LocalDateTime fecha;
 
     private Double total;
-    //cuando se hace la factura se resta el stock de los productos.
     public Factura(Set<ProductoFactura>productos) {
         this.productos=productos;
         this.fecha = LocalDateTime.now();
