@@ -40,7 +40,20 @@
 |:---------|:--------------------------------------|:-------------------------------------|:--------------------------------|
 | POST     | /login                                | log in                               | [JSON](#log-in)       |
 
-<h3>Agregar Imagen -> /producto/addImg/{id}</h3> ```json { "url": "http/url/img" } ``` <h3>
+<h3>Agregar producto -> /producto/add</h3>
+<pre><code class="json">
+{
+    "nombre": "iphone x",
+    "descripcion": "descripcion",
+    "categoria": "celular",
+    "imagenes": [
+        "urlfoto 1",
+        "urlfoto 2"
+    ],
+    "stock": 10,
+    "precio": 1000000.0
+}
+</code></pre>
     
 <h2>Sample Valid JSON Request Bodys</h2>
 
