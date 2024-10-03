@@ -43,14 +43,45 @@
 <h2>Sample Valid JSON Request Bodys</h2>
 
 estructuralo bien a esto <h3 id="agregar-producto">Agregar producto -> /producto/add</h3> 
-json { "nombre": "iphone x", "descripcion": "descripcion", "categoria": "celular", "imagenes": [ "urlfoto 1", "urlfoto 2" ], "stock": 10, "precio": 1000000.0 }
+{
+    "nombre": "iphone x",
+    "descripcion": "descripcion",
+    "categoria": "celular",
+    "imagenes": [ "urlfoto 1",
+                "urlfoto 2" ],
+    "stock": 10,
+    "precio": 1000000.0 
+}
  <h3 id="agregar-imagen">Agregar Imagen -> /producto/addImg/{id}</h3> 
-json { "url": "http/url/img" }
+{
+    "url": "http/url/img" 
+}
  <h3 id="editar-producto">Editar producto -> /producto/update/{id}</h3> 
-json { "nombre": "iphone x", "descripcion": "descripcion", "categoria": "celular", "imagenes": [ "urlfoto 1", "urlfoto 2" ], "stock": 10, "precio": 1000000.0 }
+{
+    "nombre": "iphone x",
+    "descripcion": "descripcion",
+    "categoria": "celular",
+    "imagenes": [ "urlfoto 1",
+                "urlfoto 2" ],
+    "stock": 10,
+    "precio": 1000000.0 
+}
  <h3 id="agregar-usuario">Agregar usuario -> /user/add</h3> 
-json { "username": "user", "password": "password", "email": "user@gmail.com", "telefono": "123456789", "roles": ["ADMIN"] }
+{
+    "username": "user",
+    "password": "password",
+    "email": "user@gmail.com",
+    "telefono": "123456789",
+    "roles": ["ADMIN"] 
+}
  <h3 id="editar-usuario">Edita usuario -> /user/update/{id}</h3> 
-json { "email": "user@gmail.com", "telefono": "123456789", "roles": ["ADMIN"] }
+{
+    "email": "user@gmail.com",
+    "telefono": "123456789",
+    "roles": ["ADMIN"] 
+}
  <h3 id="log-in">Log in -> /login</h3> 
-json { "username": "username", "password": "password" }
+{
+    "username": "username",
+    "password": "password" 
+}
