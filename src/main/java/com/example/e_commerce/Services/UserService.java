@@ -1,5 +1,6 @@
 package com.example.e_commerce.Services;
 
+import com.example.e_commerce.DTOs.RegisterDTO;
 import com.example.e_commerce.DTOs.UserDTO;
 import com.example.e_commerce.Entities.Carrito;
 import com.example.e_commerce.Entities.Erole;
@@ -72,11 +73,11 @@ public class UserService {
         return userDTO;
     }
 
-    public UserDTO updateUser(Long id,UserDTO userDTO) throws IdNotFound {
+    public UserDTO updateUser(Long id, RegisterDTO registerDTO) throws IdNotFound {
         User userExistente=userRepository.findById(id)
                 .orElseThrow(()->new IdNotFound());
 
-        Set<Role>roles=(userDTO.getRoles().stream()
+        Set<Role>roles=(registerDTO.getRoles().stream()
                 .map(role-> {
                     try {
                         return roleRepository.findByRole(Erole.valueOf(role))
@@ -87,25 +88,19 @@ public class UserService {
                 })
                 .collect(Collectors.toSet()));
 
-        userExistente.setUsername(userDTO.getUsername());
-        userExistente.setEmail(userDTO.getEmail());
-        userExistente.setTelefono(userDTO.getTelefono());
+        userExistente.setEmail(registerDTO.getEmail());
+        userExistente.setTelefono(registerDTO.getTelefono());
         userExistente.setRoles(roles);
 
-        userRepository.save(userExistente);
-        userDTO.setId(id);
-        return userDTO;
+        userExistente=userRepository.save(userExistente);
+        return userToDTO(userExistente);
 
     }
 
-    public User getUserById(Long id) throws IdNotFound {
-        return userRepository.findById(id)
+    public UserDTO getUserById(Long id) throws IdNotFound {
+        User user= userRepository.findById(id)
                 .orElseThrow(()->new IdNotFound());
-    }
-    public User getUserByUsername(String username){
-        return userRepository.findByUsername(username)
-                .orElseThrow(()->new UsernameNotFoundException("no se encontro el usuario")
-        );
+        return userToDTO(user);
     }
 
     public Boolean deleteUser(Long id){

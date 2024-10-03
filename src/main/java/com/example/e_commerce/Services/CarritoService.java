@@ -110,6 +110,12 @@ public class CarritoService {
         carritoRepository.save(carrito);
     }
 
+    public CarritoDTO getCarritoById(Long id) throws IdNotFound {
+        Carrito carrito=carritoRepository.findById(id)
+                .orElseThrow(()->new IdNotFound());
+        return carritoToDTO(carrito);
+    }
+
     public FacturaDTO comprarCarrito(Long id_carrito) throws IdNotFound {
         Carrito carrito=carritoRepository.findById(id_carrito)
                 .orElseThrow(()->new IdNotFound());

@@ -23,6 +23,10 @@ public class CarritoController {
     public ResponseEntity<List<CarritoDTO>>getAllCarritos(){
         return ResponseEntity.status(HttpStatus.OK).body(carritoService.getAllCarritos());
     }
+    @GetMapping("/getCarrito/{id}")
+    public ResponseEntity<CarritoDTO>getCarrito(@PathVariable Long id) throws IdNotFound {
+        return ResponseEntity.status(HttpStatus.OK).body(carritoService.getCarritoById(id));
+    }
 
     @PostMapping("{id_carrito}/addProducto/{id_producto}")
     public ResponseEntity<CarritoDTO>addProductoCarrito(@PathVariable Long id_carrito,@PathVariable Long id_producto) throws NoMoreStock, IdNotFound {

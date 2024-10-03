@@ -1,5 +1,6 @@
 package com.example.e_commerce.Controllers;
 
+import com.example.e_commerce.DTOs.RegisterDTO;
 import com.example.e_commerce.DTOs.UserDTO;
 import com.example.e_commerce.Entities.User;
 import com.example.e_commerce.Exceptions.IdNotFound;
@@ -25,15 +26,19 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(userService.getAllUsers());
     }
 
-    //cuando se crea un user crear a la vez su carrito vacio.
+    @GetMapping("/get/{id}")
+    public ResponseEntity<UserDTO>getUser(@PathVariable Long id) throws IdNotFound {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUserById(id));
+    }
+
     @PostMapping("/add")
     public ResponseEntity<UserDTO>saveUser(@RequestBody @Valid UserDTO user) throws UsernameAlreadyExists {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(user));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<UserDTO>updateUser(@PathVariable Long id,@RequestBody @Valid UserDTO userDTO) throws IdNotFound {
-        return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(id,userDTO));
+    public ResponseEntity<UserDTO>updateUser(@PathVariable Long id,@RequestBody @Valid RegisterDTO registerDTO) throws IdNotFound {
+        return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(id,registerDTO));
     }
 
     @DeleteMapping("/delete/{id}")

@@ -42,7 +42,6 @@ public class ProductoService {
 
         newProducto.setCategoria(categoria);
         if(productoDTO.getImagenes()!=null) {
-            //primero los guardamos para que el producto ya tenga un id y pueda setearse las fotos en la db.
             newProducto = productoRepository.save(newProducto);
 
             Producto finalNewProducto = newProducto;
@@ -61,7 +60,6 @@ public class ProductoService {
     }
 
     public ProductoDTO updateProducto(Long id,ProductoDTO productoDTO) throws IdNotFound {
-        //configurar las imagenes.
         Producto producto=productoRepository.findById(id)
                 .orElseThrow(()->new IdNotFound());
 
@@ -113,6 +111,11 @@ public class ProductoService {
     public Producto getProducto(Long id) throws IdNotFound {
         return productoRepository.findById(id)
                 .orElseThrow(()->new IdNotFound());
+    }
+    public ProductoDTO getProductobyId(Long id) throws IdNotFound {
+        Producto producto= productoRepository.findById(id)
+                .orElseThrow(()->new IdNotFound());
+        return productoToDTO(producto);
     }
 
     public Producto DTOtoProducto(ProductoDTO productoDTO){

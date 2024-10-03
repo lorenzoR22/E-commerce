@@ -23,6 +23,11 @@ public class ProductoController{
         return ResponseEntity.status(HttpStatus.OK).body(productoService.getAllProductos());
     }
 
+    @GetMapping("/get/{id}")
+    public ResponseEntity<ProductoDTO>getProducto(@PathVariable Long id) throws IdNotFound {
+        return ResponseEntity.status(HttpStatus.OK).body(productoService.getProductobyId(id));
+    }
+
     @PostMapping("/add")
     public ResponseEntity<ProductoDTO>addProducto(@RequestBody @Valid ProductoDTO productoDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(productoService.savedProducto(productoDTO));
