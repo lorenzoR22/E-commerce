@@ -5,6 +5,7 @@ import com.example.e_commerce.DTOs.FacturaDTO;
 import com.example.e_commerce.Exceptions.IdNotFound;
 import com.example.e_commerce.Exceptions.NoMoreStock;
 import com.example.e_commerce.Services.CarritoService;
+import com.example.e_commerce.Services.FacturaService;
 import com.example.e_commerce.Services.ProductoCarritoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,9 @@ import java.util.List;
 public class CarritoController {
     @Autowired
     private CarritoService carritoService;
+
+    @Autowired
+    private FacturaService facturaService;
 
     @GetMapping("/getAll")
     public ResponseEntity<List<CarritoDTO>>getAllCarritos(){
@@ -36,12 +40,12 @@ public class CarritoController {
 
     @PostMapping("/comprar/{id}")
     public ResponseEntity<FacturaDTO>comprarCarrito(@PathVariable Long id) throws IdNotFound {
-        return ResponseEntity.status(HttpStatus.OK).body(carritoService.comprarCarrito(id));
+        return ResponseEntity.status(HttpStatus.OK).body(facturaService.comprarCarrito(id));
     }
 
     @GetMapping("/facturas")
     public ResponseEntity <List<FacturaDTO>>getAllFacturas(){
-        return ResponseEntity.status(HttpStatus.OK).body(carritoService.getAllFacturas());
+        return ResponseEntity.status(HttpStatus.OK).body(facturaService.getAllFacturas());
     }
     @DeleteMapping("/deleteProducto/{id}")
     public ResponseEntity<Boolean>deleteProductoCarrito(@PathVariable Long id) throws IdNotFound {

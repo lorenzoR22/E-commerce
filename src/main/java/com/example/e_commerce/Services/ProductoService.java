@@ -41,24 +41,25 @@ public class ProductoService {
                 .orElseGet(()->categoriaRepository.save(new Categoria(productoDTO.getCategoria())));
 
         newProducto.setCategoria(categoria);
-        if(productoDTO.getImagenes()!=null) {
-            newProducto = productoRepository.save(newProducto);
 
-            Producto finalNewProducto = newProducto;
-            Set<ProductoImg> imagenes = productoDTO.getImagenes().stream()
-                    .map(url -> {
-                        ProductoImg img = new ProductoImg(url);
-                        img.setProducto(finalNewProducto);
-                        imgRepository.save(img);
-                        return img;
-                    })
-                    .collect(Collectors.toSet());
+        if(productoDTO.getImagenes()!=null){
+            newProducto.setImagenes(saveAllImg(productoDTO));
         }
+
         newProducto=productoRepository.save(newProducto);
         productoDTO.setId(newProducto.getId());
         return productoDTO;
     }
 
+    public Set<ProductoImg>saveAllImg(ProductoDTO productoDTO){
+        return productoDTO.getImagenes().stream()
+                .map(url -> {
+                    ProductoImg img = new ProductoImg(url);
+                    imgRepository.save(img);
+                    return img;
+                })
+                .collect(Collectors.toSet());
+    }
     public ProductoDTO updateProducto(Long id,ProductoDTO productoDTO) throws IdNotFound {
         Producto producto=productoRepository.findById(id)
                 .orElseThrow(()->new IdNotFound());
@@ -84,11 +85,7 @@ public class ProductoService {
         producto.addImg(productoImg);
 
         imgRepository.save(productoImg);
-
         producto=productoRepository.save(producto);
-
-        productoImg.setProducto(producto);
-        imgRepository.save(productoImg);
 
         return productoToDTO(producto);
     }
@@ -112,6 +109,7 @@ public class ProductoService {
         return productoRepository.findById(id)
                 .orElseThrow(()->new IdNotFound());
     }
+
     public ProductoDTO getProductobyId(Long id) throws IdNotFound {
         Producto producto= productoRepository.findById(id)
                 .orElseThrow(()->new IdNotFound());
@@ -119,7 +117,6 @@ public class ProductoService {
     }
 
     public Producto DTOtoProducto(ProductoDTO productoDTO){
-        //el set de imagenes queda null y categoria tambien.
         return new Producto(
                 productoDTO.getNombre(),
                 productoDTO.getDescripcion(),

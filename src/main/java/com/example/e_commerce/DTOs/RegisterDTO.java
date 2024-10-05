@@ -22,5 +22,4 @@ public class RegisterDTO {
 
     private Set<String> roles;
 
-
 }

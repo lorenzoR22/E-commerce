@@ -1,10 +1,13 @@
 package com.example.e_commerce.Entities.Productos;
 
 import com.example.e_commerce.Entities.Carrito;
+import com.example.e_commerce.Entities.Factura;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
 
 @Entity
 @Getter
@@ -30,15 +33,18 @@ public class ProductoCarrito {
         this.cantidad = 1;
         this.carrito=carrito;
     }
+
     public Integer sumarCantidad(){
         return this.cantidad+=1;
     }
+
     public Integer restarCantidad(){
         if(this.cantidad>0){
             return this.cantidad-=1;
         }
         return 0;
     }
+
     public Double getPrecioProducto(){
         return this.cantidad*producto.getPrecio();
     }

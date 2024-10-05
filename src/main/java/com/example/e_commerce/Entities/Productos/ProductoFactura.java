@@ -1,5 +1,6 @@
 package com.example.e_commerce.Entities.Productos;
 
+import com.example.e_commerce.Entities.Carrito;
 import com.example.e_commerce.Entities.Factura;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,8 +14,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 public class ProductoFactura {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -24,18 +25,22 @@ public class ProductoFactura {
     private Integer cantidad;
 
     @ManyToOne
-    @JoinColumn(name = "factura_id",nullable = false)
+    @JoinColumn(name = "factura_id", nullable = false)
     private Factura factura;
 
-    public ProductoFactura(Producto producto, Integer cantidad, Factura factura) {
+    public ProductoFactura(Producto producto, Factura factura) {
+        this.producto = producto;
+        this.cantidad = 1;
+        this.factura=factura;
+    }
+
+    public ProductoFactura(Producto producto,Integer cantidad, Factura factura) {
         this.producto = producto;
         this.cantidad = cantidad;
-        this.factura = factura;
+        this.factura=factura;
     }
 
     public Double getPrecioProducto(){
         return this.cantidad*producto.getPrecio();
     }
-
-
 }
