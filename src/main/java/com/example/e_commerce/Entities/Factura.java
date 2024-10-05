@@ -1,6 +1,5 @@
 package com.example.e_commerce.Entities;
 
-import com.example.e_commerce.Entities.Productos.ProductoCarrito;
 import com.example.e_commerce.Entities.Productos.ProductoFactura;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -25,7 +24,7 @@ public class Factura {
     private LocalDateTime fecha;
 
     private Double total;
-
+    //cuando se hace la factura se resta el stock de los productos.
     public Factura(Set<ProductoFactura>productos) {
         this.productos=productos;
         this.fecha = LocalDateTime.now();
