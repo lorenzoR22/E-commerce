@@ -1,8 +1,6 @@
 # Sistema de Gestión de Carritos de Compra
 
-**Tecnologías:** Spring Boot, MySQL, Spring Security, JWT, JPA
-
-Esta aplicación es un sistema de gestión de carritos de compra que permite a los usuarios gestionar productos, realizar compras y administrar sus cuentas.
+Esta aplicación es un sistema de gestión de carritos de compra que permite a los usuarios gestionar productos, realizar compras y administrar sus cuentas.Utiliza tecnologias como Spring Boot, MySQL, Spring Security, JWT, JPA.
 
 
 <h1>Endpoints de la API</h1>
