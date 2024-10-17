@@ -15,7 +15,7 @@ public class ProductoCarritoDTO {
     private Long id;
     @NotBlank
     private ProductoDTO producto;
-    @NotBlank
+
     private Integer cantidad;
 
 }

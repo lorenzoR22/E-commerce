@@ -42,21 +42,20 @@ public class ProductoService {
 
         newProducto.setCategoria(categoria);
 
-        if(productoDTO.getImagenes()!=null){
-            newProducto.setImagenes(saveAllImg(productoDTO));
-        }
-
         newProducto=productoRepository.save(newProducto);
+
+        if(productoDTO.getImagenes()!=null){
+            newProducto.setImagenes(saveAllImg(productoDTO,newProducto));
+        }
         productoDTO.setId(newProducto.getId());
         return productoDTO;
     }
 
-    public Set<ProductoImg>saveAllImg(ProductoDTO productoDTO){
+    public Set<ProductoImg>saveAllImg(ProductoDTO productoDTO,Producto newProducto){
         return productoDTO.getImagenes().stream()
                 .map(url -> {
-                    ProductoImg img = new ProductoImg(url);
-                    imgRepository.save(img);
-                    return img;
+                    ProductoImg img = new ProductoImg(url,newProducto);
+                    return imgRepository.save(img);
                 })
                 .collect(Collectors.toSet());
     }

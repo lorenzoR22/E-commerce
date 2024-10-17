@@ -1,6 +1,7 @@
 package com.example.e_commerce.DTOs;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class ProductoDTO {
 
-        @NotBlank
+
         private Long id;
 
         @NotBlank
@@ -25,13 +26,12 @@ public class ProductoDTO {
         @NotBlank
         private String categoria;
 
-        @NotBlank
         private Set<String> imagenes;
 
-        @NotBlank
+        @NotNull
         private Integer stock;
 
-        @NotBlank
+        @NotNull
         private Double precio;
 
 

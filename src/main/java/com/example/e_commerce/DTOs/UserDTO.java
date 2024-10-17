@@ -2,6 +2,7 @@ package com.example.e_commerce.DTOs;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
+    @NotNull
     private Long id;
 
     @NotBlank
@@ -30,7 +32,7 @@ public class UserDTO {
     @NotBlank
     private String telefono;
 
-    @NotBlank
+    @NotNull
     private Set<String> roles;
 
 }

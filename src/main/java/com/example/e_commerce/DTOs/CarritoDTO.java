@@ -1,5 +1,6 @@
 package com.example.e_commerce.DTOs;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,11 +13,11 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarritoDTO {
-    @NotBlank
+    @NotNull
     private Long id;
     @NotBlank
     private UserDTO user;
-    @NotBlank
+    @NotNull
     private Set<ProductoCarritoDTO> productosCarrito;
 
 }

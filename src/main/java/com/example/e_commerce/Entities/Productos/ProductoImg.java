@@ -22,7 +22,8 @@ public class ProductoImg {
     @JoinColumn(name = "producto_id",nullable = false)
     private Producto producto;
 
-    public ProductoImg(String url) {
+    public ProductoImg(String url,Producto producto) {
         this.url = url;
+        this.producto=producto;
     }
 }
