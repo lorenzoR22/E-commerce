@@ -1,4 +1,4 @@
-package com.example.e_commerce.DTOs;
+package com.example.e_commerce.Models.DTOs;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -6,16 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
-public class ProductoCarritoDTO {
+@AllArgsConstructor
+public class LoginDTO {
     @NotBlank
-    private Long id;
+    private String username;
     @NotBlank
-    private ProductoDTO producto;
-
-    private Integer cantidad;
-
+    private String password;
 }

@@ -1,4 +1,4 @@
-package com.example.e_commerce.Entities;
+package com.example.e_commerce.Models.Entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;

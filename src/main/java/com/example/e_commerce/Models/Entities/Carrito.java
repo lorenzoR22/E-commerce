@@ -1,6 +1,6 @@
-package com.example.e_commerce.Entities;
+package com.example.e_commerce.Models.Entities;
 
-import com.example.e_commerce.Entities.Productos.ProductoCarrito;
+import com.example.e_commerce.Models.Entities.Productos.ProductoCarrito;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

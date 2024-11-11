@@ -1,13 +1,10 @@
-package com.example.e_commerce.Entities.Productos;
+package com.example.e_commerce.Models.Entities.Productos;
 
-import com.example.e_commerce.Entities.Carrito;
-import com.example.e_commerce.Entities.Factura;
+import com.example.e_commerce.Models.Entities.Carrito;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.HashSet;
 
 @Entity
 @Getter

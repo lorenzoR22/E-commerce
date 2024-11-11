@@ -1,26 +1,23 @@
-package com.example.e_commerce.DTOs;
-
+package com.example.e_commerce.Models.DTOs;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
-@Getter
 @Setter
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
-public class FacturaDTO {
+@NoArgsConstructor
+public class CarritoDTO {
     @NotNull
     private Long id;
     @NotBlank
-    private Set<ProductoCarritoDTO> productos;
-    @NotBlank
-    private String fecha;
+    private UserDTO user;
     @NotNull
-    private Double total;
+    private Set<ProductoCarritoDTO> productosCarrito;
+
 }

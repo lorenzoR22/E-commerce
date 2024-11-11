@@ -1,4 +1,4 @@
-package com.example.e_commerce.DTOs;
+package com.example.e_commerce.Models.DTOs;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

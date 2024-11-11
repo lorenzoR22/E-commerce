@@ -1,19 +1,20 @@
 package com.example.e_commerce.Services;
 
-import com.example.e_commerce.DTOs.RegisterDTO;
-import com.example.e_commerce.DTOs.UserDTO;
-import com.example.e_commerce.Entities.Carrito;
-import com.example.e_commerce.Entities.Erole;
-import com.example.e_commerce.Entities.Role;
-import com.example.e_commerce.Entities.User;
+import com.example.e_commerce.Models.DTOs.RegisterDTO;
+import com.example.e_commerce.Models.DTOs.UserDTO;
+import com.example.e_commerce.Models.Entities.Carrito;
+import com.example.e_commerce.Models.Entities.Erole;
+import com.example.e_commerce.Models.Entities.Role;
+import com.example.e_commerce.Models.Entities.User;
 import com.example.e_commerce.Exceptions.IdNotFound;
 import com.example.e_commerce.Exceptions.UsernameAlreadyExists;
 import com.example.e_commerce.Repositories.CarritoRepository;
 import com.example.e_commerce.Repositories.RoleRepository;
 import com.example.e_commerce.Repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.management.relation.RoleNotFoundException;
 import java.util.List;
@@ -21,26 +22,23 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
-    @Autowired
-    private CarritoRepository carritoRepository;
+    private final CarritoRepository carritoRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public List<UserDTO> getAllUsers(){
         return userRepository.findAll().stream()
-                .map(user->userToDTO(user)
+                .map(this::userToDTO
                 ).toList();
     }
-
+    @Transactional
     public UserDTO saveUser(UserDTO userDTO) throws UsernameAlreadyExists {
 
         if (userRepository.existsByUsername(userDTO.getUsername())) {
@@ -71,10 +69,10 @@ public class UserService {
 
         return userDTO;
     }
-
+    @Transactional
     public UserDTO updateUser(Long id, RegisterDTO registerDTO) throws IdNotFound {
         User userExistente=userRepository.findById(id)
-                .orElseThrow(()->new IdNotFound());
+                .orElseThrow(IdNotFound::new);
 
         Set<Role>roles=(registerDTO.getRoles().stream()
                 .map(role-> {
@@ -98,7 +96,7 @@ public class UserService {
 
     public UserDTO getUserById(Long id) throws IdNotFound {
         User user= userRepository.findById(id)
-                .orElseThrow(()->new IdNotFound());
+                .orElseThrow(IdNotFound::new);
         return userToDTO(user);
     }
 

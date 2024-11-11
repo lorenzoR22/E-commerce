@@ -1,49 +1,39 @@
 package com.example.e_commerce.Services;
 
-import com.example.e_commerce.DTOs.CarritoDTO;
-import com.example.e_commerce.DTOs.FacturaDTO;
-import com.example.e_commerce.DTOs.ProductoCarritoDTO;
-import com.example.e_commerce.Entities.*;
-import com.example.e_commerce.Entities.Productos.Producto;
-import com.example.e_commerce.Entities.Productos.ProductoCarrito;
+import com.example.e_commerce.Models.DTOs.CarritoDTO;
+import com.example.e_commerce.Models.DTOs.ProductoCarritoDTO;
+import com.example.e_commerce.Models.Entities.Carrito;
+import com.example.e_commerce.Models.Entities.Productos.Producto;
+import com.example.e_commerce.Models.Entities.Productos.ProductoCarrito;
 import com.example.e_commerce.Exceptions.IdNotFound;
 import com.example.e_commerce.Exceptions.NoMoreStock;
 import com.example.e_commerce.Repositories.CarritoRepository;
-import com.example.e_commerce.Repositories.FacturaRepository;
 import com.example.e_commerce.Repositories.ProductoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CarritoService {
-    @Autowired
-    private CarritoRepository carritoRepository;
 
-    @Autowired
-    private ProductoCarritoService productoCarritoService;
+    private final CarritoRepository carritoRepository;
 
-    @Autowired
-    private UserService userService;
+    private final ProductoCarritoService productoCarritoService;
 
-    @Autowired
-    private ProductoService productoService;
+    private final UserService userService;
 
-    @Autowired
-    private ProductoRepository productoRepository;
+    private final ProductoService productoService;
 
-    @Autowired
-    private FacturaRepository facturaRepository;
+    private final ProductoRepository productoRepository;
 
     public List<CarritoDTO>getAllCarritos(){
         List<Carrito>carritos=carritoRepository.findAll();
         return carritos.stream()
-                .map(carrito->carritoToDTO(carrito)
+                .map(this::carritoToDTO
                 ).toList();
     }
 
@@ -67,10 +57,10 @@ public class CarritoService {
                     return pc;
                 });
     }
-
+    @Transactional
     public CarritoDTO addProductoCarrito(Long id_carrito,Long id_producto) throws NoMoreStock, IdNotFound {
         Carrito carrito=carritoRepository.findById(id_carrito)
-                .orElseThrow(()->new IdNotFound());
+                .orElseThrow(IdNotFound::new);
 
         Producto producto=productoService.getProducto(id_producto);
         validarStock(producto);
@@ -102,9 +92,7 @@ public class CarritoService {
 
     public CarritoDTO getCarritoById(Long id) throws IdNotFound {
         Carrito carrito=carritoRepository.findById(id)
-                .orElseThrow(()->new IdNotFound());
+                .orElseThrow(IdNotFound::new);
         return carritoToDTO(carrito);
     }
-
-
 }

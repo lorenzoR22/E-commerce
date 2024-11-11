@@ -1,8 +1,8 @@
 package com.example.e_commerce.Security;
 
-import com.example.e_commerce.Entities.User;
+import com.example.e_commerce.Models.Entities.User;
 import com.example.e_commerce.Repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,10 +10,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class CustomerUserDetailsService implements UserDetailsService{
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

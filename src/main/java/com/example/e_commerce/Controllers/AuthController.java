@@ -1,9 +1,9 @@
 package com.example.e_commerce.Controllers;
 
-import com.example.e_commerce.DTOs.LoginDTO;
+import com.example.e_commerce.Models.DTOs.LoginDTO;
 import com.example.e_commerce.Security.Jwt.JwtUtils;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/login")
+@RequiredArgsConstructor
 public class AuthController {
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtUtils jwtUtils;
+    private final AuthenticationManager authenticationManager;
+
+    private final JwtUtils jwtUtils;
 
     @PostMapping
     public ResponseEntity<?>AuthenticateUser(@RequestBody @Valid LoginDTO loginRequest){

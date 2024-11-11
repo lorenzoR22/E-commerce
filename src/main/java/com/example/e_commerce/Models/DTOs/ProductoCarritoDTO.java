@@ -1,23 +1,21 @@
-package com.example.e_commerce.DTOs;
+package com.example.e_commerce.Models.DTOs;
+
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
-
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CarritoDTO {
-    @NotNull
+public class ProductoCarritoDTO {
+    @NotBlank
     private Long id;
     @NotBlank
-    private UserDTO user;
-    @NotNull
-    private Set<ProductoCarritoDTO> productosCarrito;
+    private ProductoDTO producto;
+
+    private Integer cantidad;
 
 }

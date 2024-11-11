@@ -1,38 +1,38 @@
 package com.example.e_commerce.Services;
 
-import com.example.e_commerce.DTOs.ProductoDTO;
-import com.example.e_commerce.Entities.Categoria;
-import com.example.e_commerce.Entities.Productos.Producto;
-import com.example.e_commerce.Entities.Productos.ProductoImg;
+import com.example.e_commerce.Models.DTOs.ProductoDTO;
+import com.example.e_commerce.Models.Entities.Categoria;
+import com.example.e_commerce.Models.Entities.Productos.Producto;
+import com.example.e_commerce.Models.Entities.Productos.ProductoImg;
 import com.example.e_commerce.Exceptions.IdNotFound;
 import com.example.e_commerce.Repositories.CategoriaRepository;
 import com.example.e_commerce.Repositories.ProductoImgRepository;
 import com.example.e_commerce.Repositories.ProductoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ProductoService {
-    @Autowired
-    private ProductoRepository productoRepository;
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
+    private final ProductoRepository productoRepository;
 
-    @Autowired
-    private ProductoImgRepository imgRepository;
+    private final CategoriaRepository categoriaRepository;
+
+    private final ProductoImgRepository imgRepository;
 
     public List<ProductoDTO>getAllProductos(){
         List<Producto>productos=productoRepository.findAll();
         return productos.stream()
-                .map(product->(productoToDTO(product))
+                .map(this::productoToDTO
                 ).toList();
     }
-
+    @Transactional
     public ProductoDTO savedProducto(ProductoDTO productoDTO){
 
         Producto newProducto=DTOtoProducto(productoDTO);
@@ -59,9 +59,10 @@ public class ProductoService {
                 })
                 .collect(Collectors.toSet());
     }
+    @Transactional
     public ProductoDTO updateProducto(Long id,ProductoDTO productoDTO) throws IdNotFound {
         Producto producto=productoRepository.findById(id)
-                .orElseThrow(()->new IdNotFound());
+                .orElseThrow(IdNotFound::new);
 
         Categoria categoria=categoriaRepository.findByNombre(productoDTO.getCategoria())
                 .orElseGet(()->categoriaRepository.save(new Categoria(productoDTO.getCategoria())));
@@ -78,7 +79,7 @@ public class ProductoService {
     }
     public ProductoDTO addProductoImg(Long id_producto,ProductoImg productoImg) throws IdNotFound {
         Producto producto=productoRepository.findById(id_producto)
-                .orElseThrow(()->new IdNotFound());
+                .orElseThrow(IdNotFound::new);
 
         productoImg.setProducto(producto);
         producto.addImg(productoImg);
@@ -106,12 +107,12 @@ public class ProductoService {
 
     public Producto getProducto(Long id) throws IdNotFound {
         return productoRepository.findById(id)
-                .orElseThrow(()->new IdNotFound());
+                .orElseThrow(IdNotFound::new);
     }
 
     public ProductoDTO getProductobyId(Long id) throws IdNotFound {
         Producto producto= productoRepository.findById(id)
-                .orElseThrow(()->new IdNotFound());
+                .orElseThrow(IdNotFound::new);
         return productoToDTO(producto);
     }
 
@@ -131,7 +132,7 @@ public class ProductoService {
                 producto.getDescripcion(),
                 producto.getCategoria().getNombre(),
                 producto.getImagenes().stream()
-                        .map(img->img.getUrl())
+                        .map(ProductoImg::getUrl)
                         .collect(Collectors.toSet()),
                 producto.getStock(),
                 producto.getPrecio()

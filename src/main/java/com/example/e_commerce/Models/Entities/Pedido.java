@@ -1,6 +1,6 @@
-package com.example.e_commerce.Entities;
+package com.example.e_commerce.Models.Entities;
 
-import com.example.e_commerce.Entities.Productos.ProductoFactura;
+import com.example.e_commerce.Models.Entities.Productos.ProductoPedido;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,26 +12,25 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name = "facturas")
-public class Factura {
+@Table(name = "pedidos")
+public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "factura",cascade = CascadeType.ALL)
-    private Set<ProductoFactura> productos;
+    @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)
+    private Set<ProductoPedido> productos;
 
     private LocalDateTime fecha;
 
     private Double total;
-    //cuando se hace la factura se resta el stock de los productos.
-    public Factura(Set<ProductoFactura>productos) {
+    public Pedido(Set<ProductoPedido>productos) {
         this.productos=productos;
         this.fecha = LocalDateTime.now();
         this.total=totalFactura();
     }
 
-    public Factura() {
+    public Pedido() {
         this.productos=new HashSet<>();
         this.fecha = LocalDateTime.now();
         this.total=0.0;
@@ -39,7 +38,7 @@ public class Factura {
 
     public Double totalFactura(){
         Double total=0.0;
-        for(ProductoFactura item: productos){
+        for(ProductoPedido item: productos){
             total+=item.getPrecioProducto();
         }
         return total;
