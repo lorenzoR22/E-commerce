@@ -16,8 +16,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
-    @NotNull
-    private Long id;
 
     @NotBlank
     @Size(max = 30,message = "El username no puede tener mas de 30 caracteres.")

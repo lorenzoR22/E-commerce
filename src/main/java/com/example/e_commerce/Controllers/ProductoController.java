@@ -53,10 +53,10 @@ public class ProductoController{
     public Boolean deleteProducto(@PathVariable Long id){
         return productoService.deleteProducto(id);
     }
+
     @DeleteMapping("/deleteImg/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Boolean deleteImg(@PathVariable Long id){
         return productoService.deleteProductoImg(id);
     }
-
 }

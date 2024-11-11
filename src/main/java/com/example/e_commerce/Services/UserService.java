@@ -54,7 +54,6 @@ public class UserService {
                 .collect(Collectors.toSet());
 
         User newUser = new User(
-                userDTO.getId(),
                 userDTO.getUsername(),
                 passwordEncoder.encode(userDTO.getPassword()),
                 userDTO.getEmail(),
@@ -62,9 +61,8 @@ public class UserService {
                 roles);
         newUser=userRepository.save(newUser);
 
-        carritoRepository.save(new Carrito(newUser));
+        carritoRepository.save(newUser.getCarrito());
 
-        userDTO.setId(newUser.getId());
         userDTO.setPassword(newUser.getPassword());
 
         return userDTO;
@@ -110,7 +108,6 @@ public class UserService {
 
     public UserDTO userToDTO(User user){
         return new UserDTO(
-                user.getId(),
                 user.getUsername(),
                 user.getPassword(),
                 user.getEmail(),

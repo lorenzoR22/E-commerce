@@ -33,11 +33,15 @@ public class User{
         inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role>roles;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Carrito carrito;
+
     public User(String username, String password, String email, String telefono, Set<Role> roles) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.telefono = telefono;
         this.roles = roles;
+        this.carrito=new Carrito(this);
     }
 }

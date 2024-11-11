@@ -32,8 +32,9 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/login")
                         .permitAll()
+                        //.requestMatchers("/user/delete/**").hasRole("ADMIN")
                         .anyRequest()
-                        .permitAll()
+                        .authenticated()
                 )
                 .sessionManagement(session->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
