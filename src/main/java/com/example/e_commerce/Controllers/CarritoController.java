@@ -24,6 +24,7 @@ public class CarritoController {
 
     @GetMapping("/getAll")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ADMIN')")
     public List<CarritoDTO>getAllCarritos(){
         return carritoService.getAllCarritos();
     }
@@ -48,6 +49,7 @@ public class CarritoController {
 
     @GetMapping("/pedidos")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ADMIN')")
     public List<PedidoDTO>getAllPedidos(){
         return pedidoService.getAllPedidos();
     }

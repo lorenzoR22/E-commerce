@@ -22,6 +22,7 @@ public class UserController {
 
     @GetMapping("/getAll")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ADMIN')")
     public List<UserDTO>getAllUsers(){
         return userService.getAllUsers();
     }
@@ -46,6 +47,7 @@ public class UserController {
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ADMIN')")
     public Boolean deleteUser(@PathVariable Long id){
         return userService.deleteUser(id);
     }
