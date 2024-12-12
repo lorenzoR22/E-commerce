@@ -8,10 +8,12 @@ import com.example.e_commerce.Services.CarritoService;
 import com.example.e_commerce.Services.PedidoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/carrito")
@@ -43,7 +45,7 @@ public class CarritoController {
 
     @PostMapping("/comprar/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PedidoDTO comprarCarrito(@PathVariable Long id) throws IdNotFound {
+    public String comprarCarrito(@PathVariable Long id) throws IdNotFound {
         return pedidoService.comprarCarrito(id);
     }
 
@@ -52,6 +54,11 @@ public class CarritoController {
     @PreAuthorize("hasRole('ADMIN')")
     public List<PedidoDTO>getAllPedidos(){
         return pedidoService.getAllPedidos();
+    }
+
+    @PostMapping("/checkPago/{idCarrito}")
+    public ResponseEntity<String>checkPago(@RequestBody Map<String, Object> payload,@PathVariable("idCarrito") Long idCarrito){
+        return pedidoService.handleNotification(payload, idCarrito);
     }
 
     @DeleteMapping("/deleteProducto/{id}")

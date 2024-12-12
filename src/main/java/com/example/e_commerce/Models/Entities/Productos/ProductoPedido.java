@@ -33,10 +33,10 @@ public class ProductoPedido {
         this.pedido = pedido;
     }
 
-    public ProductoPedido(Producto producto, Integer cantidad, Pedido factura) {
+    public ProductoPedido(Producto producto, Integer cantidad, Pedido pedido) {
         this.producto = producto;
         this.cantidad = cantidad;
-        this.pedido =factura;
+        this.pedido =pedido;
     }
 
     public Double getPrecioProducto(){

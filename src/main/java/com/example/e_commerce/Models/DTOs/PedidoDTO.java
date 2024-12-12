@@ -14,8 +14,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PedidoDTO {
-    @NotNull
-    private Long id;
     @NotBlank
     private Set<ProductoCarritoDTO> productos;
     @NotBlank

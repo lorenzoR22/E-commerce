@@ -11,8 +11,8 @@ Esta aplicación es un sistema de gestión de carritos de compra que permite a l
 | GET      | /carrito/getAll                      | obtiene todos los carritos          |                                 |
 | GET      | /carrito/getCarrito/{id}             | obtiene carrito por id              |                                 |
 | POST     | /carrito/{id_carrito}/addProducto/{id_producto} | agrega producto al carrito  |                              |
-| POST     | /carrito/comprar/{id}                | compra el carrito y crea un factura |                                 |
-| GET      | /carrito/facturas                    | muestra todas las facturas          |                                 |
+| POST     | /carrito/comprar/{id}                | compra el carrito y crea un pedido |                                 |
+| GET      | /carrito/pedidos                    | muestra todas las pedidos          |                                 |
 | DELETE   | /carrito/deleteProducto/{id}         | borra un producto por id del carrito|                                 |
 
 <h2>Producto</h2>

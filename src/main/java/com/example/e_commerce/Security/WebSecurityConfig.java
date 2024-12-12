@@ -31,7 +31,7 @@ public class WebSecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/login")
+                        .requestMatchers("/login","/carrito/checkPago/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated()
