@@ -1,6 +1,6 @@
-# Sistema de Gestión de Carritos de Compra
+# Ecommerce
 
-Esta aplicación es un sistema de gestión de carritos de compra que permite a los usuarios gestionar productos, realizar compras mediante Mercado Pago y administrar sus cuentas. Utiliza tecnologias como Spring Boot, MySQL, Spring Security, JWT, JPA.
+Aplicación backend que permite gestionar productos, carritos, pedidos y compras, con integración de pagos mediante la API de Mercado Pago. Además, cuenta con un módulo de administración para gestionar el inventario de productos.
 
 
 <h1>Endpoints de la API</h1>
