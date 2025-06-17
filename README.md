@@ -1,8 +1,26 @@
 # Ecommerce
 
-Aplicación backend que permite gestionar productos, carritos, pedidos y compras, con integración de pagos mediante la API de Mercado Pago. Además, cuenta con un módulo de administración para gestionar el inventario de productos.
+## 📖 Descripción del Proyecto
 
+Este proyecto es una aplicación **E-commerce** desarrollada como monolito modular, donde cada funcionalidad está organizada por servicios separados. Permite a los usuarios explorar productos, gestionar su carrito de compras, realizar pedidos y efectuar pagos mediante la integración con **Mercado Pago**.
 
+El sistema cuenta con funcionalidades de **registro, login y autenticación JWT**, asegurando el acceso seguro a los recursos. Algunos endpoints están protegidos por roles, permitiendo que solo los usuarios con rol **ADMIN** accedan a ciertas operaciones sensibles, como la gestión de productos.
+
+### 🛒 Funcionalidades principales:
+- Gestión de productos
+- Carrito de compras por usuario
+- Generación y almacenamiento de pedidos
+- Integración con Mercado Pago para el procesamiento de pagos
+- Registro e inicio de sesión de usuarios
+- Seguridad con JWT y control de acceso por roles
+
+El proyecto está estructurado en capas y dividido en servicios como `usuarios`, `productos`, `carritos` y `pedidos`, facilitando la escalabilidad y el mantenimiento del código.
+
+## ⚒️ Stack Tecnológico
+
+#### `Java` • `Spring Boot` • `Spring Security` • `JWT` • `Jakarta Validation` • `MySQL` • `Docker` • `Mercado Pago API` • `JPA/Hibernate` • `Lombok`
+
+<hr>
 <h1>Endpoints de la API</h1>
 <h2>Carrito</h2>
 
