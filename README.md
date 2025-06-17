@@ -1,18 +1,34 @@
-# Sistema de Gestión de Carritos de Compra
+# Ecommerce
 
-Esta aplicación es un sistema de gestión de carritos de compra que permite a los usuarios gestionar productos, realizar compras y administrar sus cuentas. Utiliza tecnologias como Spring Boot, MySQL, Spring Security, JWT, JPA.
+## 📖 Descripción del Proyecto
 
+Este proyecto es una aplicación **E-commerce** desarrollada como monolito modular, donde cada funcionalidad está organizada por servicios separados. Permite a los usuarios explorar productos, gestionar su carrito de compras, realizar pedidos y efectuar pagos mediante la integración con **Mercado Pago**.
 
+El sistema cuenta con funcionalidades de **registro, login y autenticación JWT**, asegurando el acceso seguro a los recursos. Algunos endpoints están protegidos por roles, permitiendo que solo los usuarios con rol **ADMIN** accedan a ciertas operaciones sensibles, como la gestión de productos.
+
+### 🛒 Funcionalidades principales:
+- Gestión de productos
+- Carrito de compras por usuario
+- Generación y almacenamiento de pedidos
+- Integración con Mercado Pago para el procesamiento de pagos
+- Registro e inicio de sesión de usuarios
+- Seguridad con JWT y control de acceso por roles
+
+El proyecto está estructurado en capas y dividido en servicios como `usuarios`, `productos`, `carritos` y `pedidos`, facilitando la escalabilidad y el mantenimiento del código.
+
+## ⚒️ Stack Tecnológico
+
+#### `Java` • `Spring Boot` • `Spring Security` • `JWT` • `Jakarta Validation` • `MySQL` • `Docker` • `Mercado Pago API` • `JPA/Hibernate` • `Lombok`
+
+<hr>
 <h1>Endpoints de la API</h1>
 <h2>Carrito</h2>
 
 | Method   | Url                                   | Descripcion                          | Sample Valid Request Body       |
 |:---------|:--------------------------------------|:-------------------------------------|:--------------------------------|
-| GET      | /carrito/getAll                      | obtiene todos los carritos          |                                 |
 | GET      | /carrito/getCarrito/{id}             | obtiene carrito por id              |                                 |
 | POST     | /carrito/{id_carrito}/addProducto/{id_producto} | agrega producto al carrito  |                              |
 | POST     | /carrito/comprar/{id}                | compra el carrito y crea un pedido |                                 |
-| GET      | /carrito/pedidos                    | muestra todas las pedidos          |                                 |
 | DELETE   | /carrito/deleteProducto/{id}         | borra un producto por id del carrito|                                 |
 
 <h2>Producto</h2>
@@ -36,6 +52,13 @@ Esta aplicación es un sistema de gestión de carritos de compra que permite a l
 | POST     | /user/add                            | agrega un usuario                    | [JSON](#agregar-usuario)       |
 | PUT      | /user/update/{id}                    | edita un usuario por id             | [JSON](#editar-usuario)        |
 | DELETE   | /user/delete/{id}                    | borra un usuario por id              |                                 |
+
+<h2>Pedido</h2>
+
+| Method   | Url                                   | Descripcion                          | Sample Valid Request Body       |
+|:---------|:--------------------------------------|:-------------------------------------|:--------------------------------|
+| GET      | /pedido/{id}                         | obtiene obtiene un pedido          |                                 |
+| POST     | /pedido/checkPago/{id_carrito}       | verifica que el pago haya sido aprobado y guarda el pedido|                    |
 
 <h2>Autenticación</h2>
 
