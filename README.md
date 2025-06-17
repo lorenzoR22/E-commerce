@@ -8,11 +8,9 @@ Aplicación backend que permite gestionar productos, carritos, pedidos y compras
 
 | Method   | Url                                   | Descripcion                          | Sample Valid Request Body       |
 |:---------|:--------------------------------------|:-------------------------------------|:--------------------------------|
-| GET      | /carrito/getAll                      | obtiene todos los carritos          |                                 |
 | GET      | /carrito/getCarrito/{id}             | obtiene carrito por id              |                                 |
 | POST     | /carrito/{id_carrito}/addProducto/{id_producto} | agrega producto al carrito  |                              |
 | POST     | /carrito/comprar/{id}                | compra el carrito y crea un pedido |                                 |
-| GET      | /carrito/pedidos                    | muestra todas las pedidos          |                                 |
 | DELETE   | /carrito/deleteProducto/{id}         | borra un producto por id del carrito|                                 |
 
 <h2>Producto</h2>
@@ -36,6 +34,13 @@ Aplicación backend que permite gestionar productos, carritos, pedidos y compras
 | POST     | /user/add                            | agrega un usuario                    | [JSON](#agregar-usuario)       |
 | PUT      | /user/update/{id}                    | edita un usuario por id             | [JSON](#editar-usuario)        |
 | DELETE   | /user/delete/{id}                    | borra un usuario por id              |                                 |
+
+<h2>Pedido</h2>
+
+| Method   | Url                                   | Descripcion                          | Sample Valid Request Body       |
+|:---------|:--------------------------------------|:-------------------------------------|:--------------------------------|
+| GET      | /pedido/{id}                         | obtiene obtiene un pedido          |                                 |
+| POST     | /pedido/checkPago/{id_carrito}       | verifica que el pago haya sido aprobado y guarda el pedido|                    |
 
 <h2>Autenticación</h2>
 
