@@ -2,7 +2,7 @@
 
 ## 📖 Descripción del Proyecto
 
-Este proyecto es una aplicación **E-commerce** desarrollada como monolito modular, donde cada funcionalidad está organizada por servicios separados. Permite a los usuarios explorar productos, gestionar su carrito de compras, realizar pedidos y efectuar pagos mediante la integración con **Mercado Pago**.
+Este proyecto es una aplicación **E-commerce** desarrollada como monolito modular, donde cada funcionalidad está organizada por servicios separados. Permite a los usuarios explorar productos, gestionar su carrito de compras, realizar pedidos, efectuar pagos mediante la integración con **Mercado Pago** y confirmacion de compra atraves de email.
 
 El sistema cuenta con funcionalidades de **registro, login y autenticación JWT**, asegurando el acceso seguro a los recursos. Algunos endpoints están protegidos por roles, permitiendo que solo los usuarios con rol **ADMIN** accedan a ciertas operaciones sensibles, como la gestión de productos.
 
