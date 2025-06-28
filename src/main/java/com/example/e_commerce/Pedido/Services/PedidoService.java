@@ -13,6 +13,7 @@ import com.example.e_commerce.Pedido.Exceptions.PedidoNotFoundException;
 import com.example.e_commerce.Pedido.Repositories.PedidoRepository;
 import com.example.e_commerce.Producto.Exceptions.ProductoNotFoundException;
 import com.example.e_commerce.Producto.Services.ProductoService;
+import com.example.e_commerce.Shared.Services.NotificacionService;
 import com.mercadopago.MercadoPagoConfig;
 import com.mercadopago.client.payment.PaymentClient;
 import com.mercadopago.client.preference.PreferenceBackUrlsRequest;
@@ -24,7 +25,6 @@ import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.payment.Payment;
 import com.mercadopago.resources.preference.Preference;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,15 +42,17 @@ public class PedidoService {
     private final CarritoRepository carritoRepository;
     private final ProductoService productoService;
     private final ProductoCarritoRepository productoCarritoRepository;
+    private final NotificacionService notificacionService;
 
     @Value("${mercadopago.accessToken}")
     private String mercadoPagoAccessToken;
 
-    public PedidoService(PedidoRepository pedidoRepository, CarritoRepository carritoRepository, ProductoService productoService, ProductoCarritoRepository productoCarritoRepository) {
+    public PedidoService(PedidoRepository pedidoRepository, CarritoRepository carritoRepository, ProductoService productoService, ProductoCarritoRepository productoCarritoRepository,NotificacionService notificacionService) {
         this.pedidoRepository = pedidoRepository;
         this.carritoRepository = carritoRepository;
         this.productoService = productoService;
         this.productoCarritoRepository = productoCarritoRepository;
+        this.notificacionService = notificacionService;
     }
 
     public PedidoDTO getPedido(Long id){
@@ -103,43 +105,36 @@ public class PedidoService {
     }
 
     @Transactional
-    public ResponseEntity<String> handleNotification(Map<String, Object> payload, Long IdCarrito) throws MPException, MPApiException, CarritoNotFoundException {
-
+    public void handleNotification(Map<String, Object> payload, Long IdCarrito) throws MPException, MPApiException, CarritoNotFoundException {
         if ("payment".equals(payload.get("type"))) {
             Map<String, Object> data = (Map<String, Object>) payload.get("data");
 
-            if (data == null || !data.containsKey("id")) {
-                System.err.println("El payload no contiene un campo 'data' válido o no tiene 'id'.");
-                return ResponseEntity.badRequest().body("Notificación inválida.");
+            if (data!=null && data.containsKey("id")) {
+
+                String paymentId = (String) data.get("id");
+
+                MercadoPagoConfig.setAccessToken(mercadoPagoAccessToken);
+
+                PaymentClient paymentClient = new PaymentClient();
+                Payment payment = paymentClient.get(Long.valueOf(paymentId));
+
+                if ("approved".equals(payment.getStatus())) {
+                    Pedido pedido=guardarPedido(IdCarrito, payment);
+                    notificacionService.enviarConfirmacion(pedido.getUser().getEmail(),pedido.getProductos());
+                }
             }
-
-            String paymentId = (String) data.get("id");
-
-            MercadoPagoConfig.setAccessToken(mercadoPagoAccessToken);
-
-            PaymentClient paymentClient = new PaymentClient();
-            Payment payment = paymentClient.get(Long.valueOf(paymentId));
-
-            if ("approved".equals(payment.getStatus())) {
-
-                guardarPedido(IdCarrito,payment);
-
-            } else {
-                System.out.println("Pago no aprobado: " + payment.getStatus());
-            }
-
         }
-        return ResponseEntity.ok("Notificación recibida correctamente.");
     }
 
-    private void guardarPedido(Long IdCarrito,Payment payment) throws CarritoNotFoundException, ProductoNotFoundException {
+    private Pedido guardarPedido(Long IdCarrito,Payment payment) throws CarritoNotFoundException, ProductoNotFoundException {
         Carrito carrito = carritoRepository.findById(IdCarrito)
                 .orElseThrow(()->new CarritoNotFoundException(IdCarrito));
+
         productoCarritoRepository.deleteByCarrito(carrito);
         carrito.getProductosCarrito().clear();
         carritoRepository.save(carrito);
 
-        Pedido pedidoSaved = pedidoRepository.save(new Pedido());
+        Pedido pedidoSaved = pedidoRepository.save(new Pedido(carrito.getUser()));
 
         pedidoSaved.setProductos(payment.getAdditionalInfo().getItems()
                 .stream()
@@ -150,7 +145,7 @@ public class PedidoService {
                 .collect(Collectors.toSet()));
         pedidoSaved.setTotal(pedidoSaved.totalFactura());
 
-        pedidoRepository.save(pedidoSaved);
+        return pedidoRepository.save(pedidoSaved);
     }
 
     public PedidoDTO pedidoToDTO(Pedido pedido){

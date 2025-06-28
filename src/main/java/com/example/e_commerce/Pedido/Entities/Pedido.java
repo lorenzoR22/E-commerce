@@ -1,6 +1,7 @@
 package com.example.e_commerce.Pedido.Entities;
 
 
+import com.example.e_commerce.User.Entities.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,19 +19,26 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @OneToMany(mappedBy = "pedido",cascade = CascadeType.ALL)
     private Set<ProductoPedido> productos;
 
     private LocalDateTime fecha;
 
     private Double total;
-    public Pedido(Set<ProductoPedido>productos) {
+
+    public Pedido(Set<ProductoPedido>productos,User user) {
+        this.user=user;
         this.productos=productos;
         this.fecha = LocalDateTime.now();
         this.total=totalFactura();
     }
 
-    public Pedido() {
+    public Pedido(User user) {
+        this.user=user;
         this.productos=new HashSet<>();
         this.fecha = LocalDateTime.now();
         this.total=0.0;

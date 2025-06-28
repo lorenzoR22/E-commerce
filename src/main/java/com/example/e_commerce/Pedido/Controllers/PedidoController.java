@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -29,8 +28,8 @@ public class PedidoController {
     }
 
     @PostMapping("/checkPago/{idCarrito}")
-    public ResponseEntity<String> checkPago(@RequestBody Map<String, Object> payload, @PathVariable("idCarrito") Long idCarrito) throws MPException, MPApiException, CarritoNotFoundException {
-        return pedidoService.handleNotification(payload, idCarrito);
+    public void checkPago(@RequestBody Map<String, Object> payload, @PathVariable("idCarrito") Long idCarrito) throws MPException, MPApiException, CarritoNotFoundException {
+         pedidoService.handleNotification(payload, idCarrito);
     }
 
 }

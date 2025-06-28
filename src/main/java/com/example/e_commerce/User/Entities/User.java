@@ -1,12 +1,14 @@
 package com.example.e_commerce.User.Entities;
 
 import com.example.e_commerce.Carrito.Entities.Carrito;
+import com.example.e_commerce.Pedido.Entities.Pedido;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -36,6 +38,9 @@ public class User{
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Carrito carrito;
+
+    @OneToMany(mappedBy = "user")
+    private List<Pedido> pedidos;
 
     public User(String username, String password, String email, String telefono, Set<Role> roles) {
         this.username = username;

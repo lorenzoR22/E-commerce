@@ -5,19 +5,14 @@ import com.example.e_commerce.Carrito.Exceptions.CarritoNotFoundException;
 import com.example.e_commerce.Carrito.Services.CarritoService;
 import com.example.e_commerce.Carrito.Exceptions.ProductoCarritoNotFoundException;
 import com.example.e_commerce.Producto.Exceptions.ProductoNotFoundException;
-import com.example.e_commerce.Pedido.DTOs.PedidoDTO;
 import com.example.e_commerce.Producto.Exceptions.NoMoreStockException;
 import com.example.e_commerce.Pedido.Services.PedidoService;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/carrito")
